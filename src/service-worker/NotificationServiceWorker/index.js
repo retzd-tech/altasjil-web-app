@@ -52,7 +52,7 @@ const showNotification = async (title, options) => {
 };
 
 const register = async () => {
-  const currentServiceWorker = await navigator.serviceWorker.register('service-worker.js');
+  const currentServiceWorker = await navigator.serviceWorker.register('/service-worker.js');
   console.log('Service Worker is registered', serviceWorker);
   serviceWorker = currentServiceWorker;
 

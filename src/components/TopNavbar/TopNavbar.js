@@ -11,8 +11,8 @@ class TopNavbar extends Component {
 
   render() {
     return (
-      <div>
-        <Typography variant="h5" className="title">Helpers Web AR</Typography>
+      <div className='top-navbar-container'>
+        <Typography variant="h5" className="title">{this.props.text}</Typography>
         <Fade down>
           <div className="top-navbar"/>
         </Fade>

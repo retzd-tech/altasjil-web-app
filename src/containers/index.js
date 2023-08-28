@@ -1,9 +1,9 @@
 import Dashboard from "./Dashboard/Dashboard";
-import Notification from "./Notification/Notification";
+import About from "./About/About";
 import Loading from "./Loading/Loading";
 
 export {
   Dashboard,
-  Notification,
+  About,
   Loading
 }

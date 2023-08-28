@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import {Avatar, Card, Modal, Collapse} from "antd";
 import 'antd/dist/antd.css';
 import { EnvironmentOutlined, EllipsisOutlined, MessageOutlined } from '@ant-design/icons';
-import PositionView from '../PositionView/PositionView';
-import Comments from "../Comments/Comments";
 import './ProfileCard.css'
 
 const { Meta } = Card;
@@ -24,7 +22,6 @@ class ProfileCard extends Component {
   };
 
   hidePositionViewModal = e => {
-    console.log(e);
     this.setState({
       positionViewVisible: false,
     });
@@ -37,7 +34,6 @@ class ProfileCard extends Component {
   };
 
   hideCommentsModal = e => {
-    console.log(e);
     this.setState({
       commentsVisible: false,
     });
@@ -74,7 +70,6 @@ class ProfileCard extends Component {
           onOk={this.hidePositionViewModal}
           onCancel={this.hidePositionViewModal}
         >
-          <PositionView />
         </Modal>
 
         <Modal
@@ -83,7 +78,6 @@ class ProfileCard extends Component {
           onOk={this.hideCommentsModal}
           onCancel={this.hideCommentsModal}
         >
-          <Comments />
         </Modal>
       </div>
     )

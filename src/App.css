@@ -10,5 +10,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 70vh;
+  height: 100%;
+}
+
+.login-title {
+  margin-top: 40%;
 }

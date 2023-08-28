@@ -1,23 +1,25 @@
-import React, {Component} from 'react';
-import './App.css';
-import {Route, Switch} from "react-router-dom";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
-import * as firebase from "./services/Firebase"
-import {Loading, Dashboard, Notification} from "./containers";
-import {TopNavbar, Background, BottomNavbar, NotFound} from "./components";
-import {withRouter} from "react-router-dom"
-import {Breakpoint} from "react-socks";
+import React, { Component } from "react";
+import "./App.css";
+import { Route, Switch, Redirect } from "react-router-dom";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import * as firebase from "./services/Firebase";
+
+import { Loading, Dashboard, About } from "./containers";
+import { TopNavbar, Background, BottomNavbar, Logo } from "./components";
+import { withRouter } from "react-router-dom";
+import { Breakpoint } from "react-socks";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: '',
+      page: "",
+      title: "",
       isLoading: true,
       isLoggedIn: false,
       user: {},
       userData: {},
-    }
+    };
   }
 
   componentDidMount = async () => {
@@ -25,93 +27,60 @@ class App extends Component {
   };
 
   checkIsLoggedIn = async () => {
-    await firebase.auth().onAuthStateChanged(async (user) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
-        try {
-          console.log(user);
-          await firebase.db.ref('users').orderByChild('uid').equalTo(user.uid)
-            .on('value', snapshot => {
-              let userData = [];
-
-              if (snapshot.exists()) {
-                snapshot.forEach((snap) => {
-                  userData.push(snap.val())
-                });
-                // speakStart("Welcome to XStream XR");
-              }
-
-              else {
-                userData = [{
-                  uid: user.uid,
-                  displayName: user.displayName,
-                  email: user.email,
-                  photoURL: user.photoURL,
-                }]
-              }
-
-              this.setState({
-                userData: userData[0],
-                user: user,
-                isLoading: false,
-                isLoggedIn: true
-              });
-            })
-        } catch (error) {
-          this.setState({
-            readError: error.message, loadingChats: false,
-            user: {},
-            userData: {},
-            isLoading: false,
-            isLoggedIn: false
-          })
-        }
-      } else {
-        this.setState({
-          user: {},
-          userData: {},
+        return this.setState({
+          userData: user.providerData,
+          user: user,
           isLoading: false,
-          isLoggedIn: false
-        })
+          isLoggedIn: true,
+        });
       }
-    })
+      return this.setState({
+        user: {},
+        userData: {},
+        isLoading: false,
+        isLoggedIn: false,
+      });
+    });
   };
 
-  setPage = (page) => {
+  setPage = ({ page, title }) => {
     this.setLoading(true);
     setTimeout(() => {
       this.setLoading(false);
-    }, 500);
-    this.setState({page});
+    }, 150);
+    this.setState({ title, page });
   };
 
   setLoading = (isLoading) => {
-    this.setState({isLoading})
+    this.setState({ isLoading });
   };
 
   render() {
-    const {isLoading, isLoggedIn, userData} = this.state;
-    console.log(this.state)
+    const { isLoading, isLoggedIn } = this.state;
     return (
       <div>
-
         <Breakpoint small down>
-
-          {isLoading && (<Loading/>)}
-          <TopNavbar/>
-          <Background/>
+          {isLoading && <Loading />}
+          <TopNavbar text={this.state.title} />
+          <Background />
 
           <div className="page-container">
             <Switch>
-
               {!isLoggedIn && !isLoading && (
-                <div id='firebase-auth'>
-                  <h1>Welcome!</h1>
-                  <h3>Sign in to begin.</h3>
-                  <StyledFirebaseAuth
-                    uiConfig={firebase.uiConfig}
-                    firebaseAuth={firebase.auth()}
+                <>
+                  <div className="login-title">
+                    <Logo />
+                  </div>
+                  <div id="firebase-auth">
+                    <h2>Selamat datang di aplikasi Al-Tasjil</h2>
+                    <StyledFirebaseAuth
+                      uiConfig={firebase.uiConfig}
+                      firebaseAuth={firebase.auth()}
                     />
-                </div>
+                  </div>
+                </>
               )}
 
               {isLoggedIn && !isLoading && (
@@ -120,38 +89,33 @@ class App extends Component {
                     exact
                     path="/"
                     render={(props) => (
-                      <Dashboard {...props}/>
+                      <Dashboard
+                        {...props}
+                        setPage={this.setPage}
+                        title={this.state.title}
+                      />
                     )}
                   />
 
                   <Route
                     exact
-                    path="/notification"
-                    render={(props) => (
-                      <Notification {...props}/>
-                    )}
+                    path="/tentang"
+                    render={(props) => <About {...props} />}
                   />
                 </>
               )}
-
-              {!isLoading && (
-                <Route path="*" render={() => (
-                  <NotFound/>
-                )}/>
-              )}
-
             </Switch>
           </div>
-          <BottomNavbar setPage={this.setPage}/>
+          {isLoggedIn && (
+            <BottomNavbar setPage={this.setPage} isLoggedIn={isLoggedIn} />
+          )}
         </Breakpoint>
 
         <Breakpoint medium up>
           <h2>Sorry, only available on Mobile Devices</h2>
         </Breakpoint>
-
-
       </div>
-    )
+    );
   }
 }
 
