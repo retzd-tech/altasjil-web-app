@@ -14,7 +14,7 @@ class App extends Component {
     super(props);
     this.state = {
       page: "",
-      title: "",
+      title: "Beranda",
       isLoading: true,
       isLoggedIn: false,
       user: {},

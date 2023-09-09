@@ -1,0 +1,25 @@
+[debug] [2023-08-29T07:22:14.887Z] ----------------------------------------------------------------------
+[debug] [2023-08-29T07:22:14.888Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2023-08-29T07:22:14.888Z] CLI Version:   12.5.2
+[debug] [2023-08-29T07:22:14.888Z] Platform:      darwin
+[debug] [2023-08-29T07:22:14.888Z] Node Version:  v18.17.1
+[debug] [2023-08-29T07:22:14.893Z] Time:          Tue Aug 29 2023 14:22:14 GMT+0700 (Western Indonesia Time)
+[debug] [2023-08-29T07:22:14.893Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-08-29T07:22:14.894Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-08-29T07:22:14.954Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-08-29T07:22:14.954Z] > authorizing via signed-in user (tiffarainever@gmail.com)
+[debug] [2023-08-29T07:22:14.954Z] [iam] checking project helpers-webar-2 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-08-29T07:22:14.954Z] > refreshing access token with scopes: []
+[debug] [2023-08-29T07:22:14.955Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-08-29T07:22:14.955Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-08-29T07:22:15.133Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-08-29T07:22:15.133Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-08-29T07:22:15.148Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/helpers-webar-2:testIamPermissions [none]
+[debug] [2023-08-29T07:22:15.149Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/helpers-webar-2:testIamPermissions x-goog-quota-user=projects/helpers-webar-2
+[debug] [2023-08-29T07:22:15.149Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/helpers-webar-2:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-08-29T07:22:15.633Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-08-29T07:22:15.633Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-08-29T07:22:16.376Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/helpers-webar-2:testIamPermissions 200
+[debug] [2023-08-29T07:22:16.376Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/helpers-webar-2:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-08-29T07:22:16.377Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/helpers-webar-2 [none]
