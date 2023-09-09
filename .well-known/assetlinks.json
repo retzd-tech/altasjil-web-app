@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.firebaseapp.helpers_webar_2.twa",
+        "sha256_cert_fingerprints": ["4A:BA:14:B6:62:C2:6B:78:D8:70:B1:73:EF:3C:32:58:30:83:0F:27:41:FF:D1:C0:2B:54:09:A1:D4:9D:37:59"]
+      }
+    }]
