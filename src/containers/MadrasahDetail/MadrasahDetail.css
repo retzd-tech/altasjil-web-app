@@ -1,0 +1,14 @@
+.profile-container {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.profile {
+    size: 100px;
+    width: 100px;
+}
+
+.text {
+    display: inline;
+    padding-left: 20px;
+}

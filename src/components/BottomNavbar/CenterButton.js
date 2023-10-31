@@ -11,7 +11,6 @@ export const CenterButton = (props) => {
       <img alt="ar-mode" src={CenterButtonImage} className="ar-mode-button" onClick={ async () => {
         await firebase.auth().signOut();
         window.location.href = '/';
-        props.setPage({ title: '', page: '' });
       }}/>
     </div>
   )

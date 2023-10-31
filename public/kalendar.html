@@ -1,0 +1,19 @@
+<body>
+  <div id="calendar"></div>
+  <link rel="stylesheet" href="./libs/w3.css" />
+  <script
+    type="text/javascript"
+    src="./libs/hijri-date.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="./libs/calendar.js"
+  ></script>
+  <script type="text/javascript">
+    var calendar = new Calendar();
+    calendar.attachTo(document.getElementById("calendar"));
+    // or use
+    // document.getElementById('calendar').appendChild(calendar.getElement());
+    // other code
+  </script>
+</body>

@@ -3,19 +3,19 @@ import { ProfileCard, ThumbnailCard, Logo } from "../../components";
 import { CardContainer } from "../../shared";
 import { Fade } from "react-reveal";
 import { Card } from "antd";
+import menu from "../../data/menu.json";
 
 const { Meta } = Card;
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
 
   componentDidMount() {
-    if (!this.props.title) {
-      this.props.setPage({ title: "Beranda" });
-    }
+    console.log(this.props);
   }
 
   render() {
@@ -23,7 +23,7 @@ class Dashboard extends Component {
       <div>
         <Fade>
           <Logo />
-          <ThumbnailCard />
+          <ThumbnailCard {...this.props} type="dashboard" />
           {/* <CardContainer
             content={
               <ProfileCard

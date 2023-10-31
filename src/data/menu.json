@@ -1,0 +1,21 @@
+{
+  "dashboard": {
+    "images": [
+      "/images/cari_madrasah.png",
+      "/images/kalendar_hijriah.png",
+      "/images/infaq.png",
+      "/images/layanan_pengguna.png"
+    ],
+    "pages": ["madrasah", "kalendar", "infaq", "layanan-pengguna"],
+    "action": ["route", "route", "whatsapp", "whatsapp"],
+    "whatsapp": ["", "", "Halo, saya ingin melakukan infaq", "Halo, saya ingin bertanya."]
+  },
+  "profile": {
+    "images": [
+      "/images/profil.png",
+      "/images/pembayaran.png"
+    ],
+    "pages": ["profil", "pembayaran"],
+    "action": ["modal", "route"]
+  }
+}

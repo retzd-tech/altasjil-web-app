@@ -4,7 +4,16 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import * as firebase from "./services/Firebase";
 
-import { Loading, Dashboard, About } from "./containers";
+import {
+  Loading,
+  Dashboard,
+  About,
+  MadrasahList,
+  MadrasahDetail,
+  MadrasahPayment,
+  HijriCalendar,
+  Profile
+} from "./containers";
 import { TopNavbar, Background, BottomNavbar, Logo } from "./components";
 import { withRouter } from "react-router-dom";
 import { Breakpoint } from "react-socks";
@@ -14,7 +23,7 @@ class App extends Component {
     super(props);
     this.state = {
       page: "",
-      title: "Beranda",
+      title: "",
       isLoading: true,
       isLoggedIn: false,
       user: {},
@@ -43,14 +52,6 @@ class App extends Component {
         isLoggedIn: false,
       });
     });
-  };
-
-  setPage = ({ page, title }) => {
-    this.setLoading(true);
-    setTimeout(() => {
-      this.setLoading(false);
-    }, 150);
-    this.setState({ title, page });
   };
 
   setLoading = (isLoading) => {
@@ -85,30 +86,50 @@ class App extends Component {
 
               {isLoggedIn && !isLoading && (
                 <>
+                <Route
+                    exact
+                    path="/kalendar"
+                    render={(props) => {
+                      return <HijriCalendar {...props} />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/madrasah/:id"
+                    render={(props) => {
+                      return <MadrasahDetail {...props} />;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/madrasah/:id/pembayaran"
+                    render={(props) => {
+                      return <MadrasahPayment {...props} user={this.state.user}/>;
+                    }}
+                  />
+                  <Route
+                    exact
+                    path="/madrasah"
+                    render={(props) => {
+                      return <MadrasahList {...props} />;
+                    }}
+                  />
                   <Route
                     exact
                     path="/"
-                    render={(props) => (
-                      <Dashboard
-                        {...props}
-                        setPage={this.setPage}
-                        title={this.state.title}
-                      />
-                    )}
+                    render={(props) => <Dashboard {...props} />}
                   />
 
                   <Route
                     exact
                     path="/tentang"
-                    render={(props) => <About {...props} />}
+                    render={(props) => <Profile {...props} />}
                   />
                 </>
               )}
             </Switch>
           </div>
-          {isLoggedIn && (
-            <BottomNavbar setPage={this.setPage} isLoggedIn={isLoggedIn} />
-          )}
+          {isLoggedIn && <BottomNavbar />}
         </Breakpoint>
 
         <Breakpoint medium up>

@@ -15,10 +15,8 @@ class BottomNavbar extends Component {
   }
 
   handleTabChange = (event, tabName) => {
-    const { setPage } = this.props;
     this.props.history.push(`/${tabName}`);
     const titleName = tabName.charAt(0).toUpperCase() + tabName.slice(1);
-    setPage({ title: titleName, page: tabName });
     this.setState({
       tabName: tabName,
     });
@@ -30,7 +28,7 @@ class BottomNavbar extends Component {
 
     return (
       <div>
-        <CenterButton setPage={this.props.setPage}/>
+        <CenterButton/>
 
         <BottomNavigation
           value={routeName}
